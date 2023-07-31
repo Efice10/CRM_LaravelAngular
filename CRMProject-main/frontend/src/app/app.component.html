@@ -1,4 +1,4 @@
-<nav *ngIf="!isLoggedIn" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav *ngIf="isLoggedIn" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
   <div class="container">
     <a class="navbar-brand" >
       Customer Relationship Management  
@@ -24,7 +24,7 @@
   </div>
 </nav>
 
-<nav *ngIf="isLoggedIn" class="navbar bg-dark sticky-top shadow-sm">
+<nav *ngIf="!isLoggedIn" class="navbar bg-dark sticky-top shadow-sm">
   <div class="container">
     <a class="navbar-brand text-white" href="">CRM</a>
 
