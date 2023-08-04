@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Laravel\Sanctum\SanctumServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -213,4 +213,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'middleware' => [
+        // ...
+        'sanctum' => \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+    ],
 ];

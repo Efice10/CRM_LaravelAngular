@@ -1,28 +1,28 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Client\ClientController;
-use App\Http\Controllers\Client\ClientDocumentController;
-use App\Http\Controllers\Client\ClientProjectController;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Document\DocumentController;
-use App\Http\Controllers\Organization\OrganizationController;
-use App\Http\Controllers\Organization\OrganizationClientController;
-use App\Http\Controllers\Organization\OrganizationDocumentController;
-use App\Http\Controllers\Organization\OrganizationProjectController;
-use App\Http\Controllers\Project\ProjectController;
-use App\Http\Controllers\Project\ProjectDocumentController;
-use App\Http\Controllers\Project\ProjectTaskController;
-use App\Http\Controllers\Role\RoleController;
-use App\Http\Controllers\Role\RolePermissionController;
-use App\Http\Controllers\Role\RoleUserController;
-use App\Http\Controllers\Task\TaskController;
-use App\Http\Controllers\Task\TaskDocumentController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserProjectController;
 use App\Http\Controllers\User\UserTaskController;
+use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\Client\ClientDocumentController;
+use App\Http\Controllers\Client\ClientProjectController;
+use App\Http\Controllers\Organization\OrganizationController;
+use App\Http\Controllers\Organization\OrganizationClientController;
+use App\Http\Controllers\Organization\OrganizationProjectController;
+use App\Http\Controllers\Organization\OrganizationDocumentController;
+use App\Http\Controllers\Project\ProjectController;
+use App\Http\Controllers\Project\ProjectDocumentController;
+use App\Http\Controllers\Project\ProjectTaskController;
+use App\Http\Controllers\Task\TaskController;
+use App\Http\Controllers\Task\TaskDocumentController;
+use App\Http\Controllers\Document\DocumentController;
+use App\Http\Controllers\Role\RoleController;
+use App\Http\Controllers\Role\RolePermissionController;
+use App\Http\Controllers\Role\RoleUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,22 +35,16 @@ use App\Http\Controllers\User\UserTaskController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->admin();
+    });
 
-Route::redirect('/', 'login');
-
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::middleware('auth')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'index']);
 
     Route::apiResource('users', UserController::class)->except(['create', 'edit']);
     Route::get('users/{user}/projects', [UserProjectController::class, 'index']);
-    Route::get('users/{user}/tasks', [UserTaskController::class, 'index']);
+    Route::get('users/{user}/customer', [UserTaskController::class, 'index']);
 
     Route::apiResource('clients', ClientController::class)->except(['create', 'edit']);
     Route::get('clients/{client}/documents', [ClientDocumentController::class, 'index']);
@@ -81,4 +75,10 @@ Route::middleware('auth')->group(function() {
     Route::apiResource('roles.users', RoleUserController::class)->only('index');
 });
 
+
+Route::middleware(EnsureFrontendRequestsAreStateful::class)->group(function () {
+
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('logout', [LoginController::class, 'logout']);
+});
 
