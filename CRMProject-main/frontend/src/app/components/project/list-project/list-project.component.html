@@ -1,0 +1,52 @@
+<div class="kotak">
+
+    <a routerLink="/create-project" class="btn btn-success">Create Project</a>
+    <br><br>    
+    
+    <div class="table-responsive">
+        <table class="table-hover table align-middle">
+        <thead>
+            <tr>
+            <th>Title</th>
+            <th>User</th>
+            <th>Manager</th>
+            <th>Deadline</th>
+            <th>Created at</th>
+            <th>Status</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Replace this part with actual project data -->
+            <tr>
+            <td>Project Title</td>
+            <td>User Name</td>
+            <td>Manager Name</td>
+            <td>2023-08-31</td>
+            <td>2023-07-15</td>
+            <td>Active</td>
+            <td>
+                <div class="d-flex gap-1">
+                <!-- Buttons or links for actions -->
+                <a href="#" class="btn btn-sm btn-primary">Show</a>
+                <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                <form action="#" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                </div>
+            </td>
+            </tr>
+            <!-- End of project data -->
+        </tbody>
+        </table>
+    </div>
+</div>
+
+
+  <style>
+    .kotak{
+        margin-left: 15%;
+    }
+  </style>
+  

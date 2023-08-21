@@ -7,6 +7,7 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Silber\Bouncer\BouncerFacade as Bouncer;
 
@@ -47,15 +48,47 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUserRequest $request)
-    {
-        $user = User::create($request->validated());
-        $user->assign('user'); // assign user role
+{
+    try {
+        //Validated
+        $validateUser = Validator::make($request->all(), 
+        [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|confirmed|min:6',
+        ]);
+
+        if($validateUser->fails()){
+            return response()->json([
+                'status' => false,
+                'message' => 'validation error',
+                'errors' => $validateUser->errors()
+            ], 401);
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->email,
+            'address' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
 
         return response()->json([
-            'message' => 'User created successfully',
-            'user' => $user,
-        ]);
+            'status' => true,
+            'message' => 'User Created Successfully',
+            'token' => $user->createToken("API TOKEN")->plainTextToken
+        ], 200);
+
+    } catch (\Throwable $th) {
+        return response()->json([
+            'status' => false,
+            'message' => $th->getMessage()
+        ], 500);
     }
+}
+
+
 
     /**
      * Display the specified resource.
@@ -101,29 +134,34 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserRequest $request, User $user)
-    {
-        $input = $request->validated();
+{
+    $input = $request->validated();
 
-        if (isset($input['role_title'])) {
-            $role = Bouncer::role()->firstWhere('title', $input['role_title']);
-            Bouncer::sync($user)->roles([$role]);
-            unset($input['role_title']);
-        }
-
-        if (!$request->filled('password')) {
-            unset($input['password']);
-        }
-        else {
-            $input['password'] = Hash::make($input['password']);
-        }
-
-        $user->update($input);
-
-        return response()->json([
-            'message' => 'User updated successfully',
-            'user' => $user
-        ]);
+    if (isset($input['role_title'])) {
+        $role = Bouncer::role()->firstWhere('title', $input['role_title']);
+        Bouncer::sync($user)->roles([$role]);
+        unset($input['role_title']);
     }
+
+    if (!$request->filled('password')) {
+        unset($input['password']);
+    }
+    else {
+        $input['password'] = Hash::make($input['password']);
+    }
+
+    $user->update($input);
+
+    if ($request->user()->can('updateRole', $user)) {
+        $data['roles'] = Bouncer::role()->pluck('title', 'title');
+    }
+
+    return response()->json([
+        'message' => 'User updated successfully',
+        'user' => $user
+    ]);
+}
+
 
     /**
      * Remove the specified resource from storage.

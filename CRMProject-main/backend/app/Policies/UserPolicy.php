@@ -77,7 +77,7 @@ class UserPolicy
     {
         if ($model->isA('super-admin')) {
             return false;
-        }
+        }   
         else {
             return Bouncer::can('delete-any-user');
         }

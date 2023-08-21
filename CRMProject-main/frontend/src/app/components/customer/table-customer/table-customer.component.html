@@ -1,0 +1,52 @@
+<div class="kotak">
+
+    <button type="button" class="btn btn-success" routerLink="/create-customer">Create Customer</button>
+    <br><br>
+
+    <div class="table-responsive">
+        <table class="table-hover table align-middle">
+        <thead>
+            <tr>
+            <th>Name</th>
+            <th>Project</th>
+            <th>Assigned</th>
+            <th>Deadline</th>
+            <th>Created at</th>
+            <th>Status</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Replace this part with actual task data -->
+            <tr>
+            <td>Customer Name</td>
+            <td>Project Title</td>
+            <td>Assigned User Name</td>
+            <td>2023-08-31</td>
+            <td>2023-07-15</td>
+            <td>Active</td>
+            <td>
+                <div class="d-flex gap-1">
+                <!-- Buttons or links for actions -->
+                <a routerLink="/show-customer" class="btn btn-sm btn-primary">Show</a>
+                <a routerLink="/edit-customer" class="btn btn-sm btn-warning">Edit</a>
+                <form action="#" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                </div>
+            </td>
+            </tr>
+            <!-- End of task data -->
+        </tbody>
+        </table>
+    </div>
+</div>
+
+  
+  <style>
+    .kotak{
+        margin-left: 15%;
+    }
+  </style>
+  

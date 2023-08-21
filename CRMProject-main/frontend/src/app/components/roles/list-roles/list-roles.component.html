@@ -1,0 +1,39 @@
+<div class="kotak">
+    <br><br>    
+    <div class="table-responsive">
+        <table class="table-hover table align-middle">
+        <thead>
+            <tr>
+            <th>Title</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Replace this part with actual role data -->
+            <tr>
+            <td>Role Title</td>
+            <td>
+                <div class="d-flex gap-1">
+                <!-- Buttons or links for actions -->
+                <a routerLink="/show-role" class="btn btn-sm btn-primary">Show</a>
+                <a routerLink="/edit-roles" class="btn btn-sm btn-warning">Edit</a>
+                <form action="#" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                </div>
+            </td>
+            </tr>
+            <!-- End of role data -->
+        </tbody>
+        </table>
+    </div>
+</div>
+
+
+  <style>
+    .kotak{
+        margin-left: 15%;
+    }
+  </style>
+  

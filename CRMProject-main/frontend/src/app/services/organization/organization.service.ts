@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrganizationService {
-  private apiUrl = 'http://127.0.0.1:8000/organizations'; // Replace with your API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api/organizations'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) {}
 

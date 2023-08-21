@@ -1,0 +1,48 @@
+<div class="kotak">
+
+    <a routerLink="/create-user" class="btn btn-success">Create User</a>
+    <br><br>    
+    <div class="table-responsive">
+        <table class="table-hover table align-middle">
+        <thead>
+            <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <!-- Add this if $showOrganization is true -->
+            <th>Organization</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Replace this part with actual client data -->
+            <tr>
+            <td>User Name</td>
+            <td>client@example.com</td>
+            <td>123-456-7890</td>
+            <!-- Add this if $showOrganization is true -->
+            <td>Organization Name</td>
+            <td>
+                <div class="d-flex gap-1">
+                <!-- Buttons or links for actions -->
+                <a href="#" class="btn btn-sm btn-primary">Show</a>
+                <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                <form action="#" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                </div>
+            </td>
+            </tr>
+            <!-- End of client data -->
+        </tbody>
+        </table>
+    </div>
+</div>
+
+  <style>
+    .kotak{
+        margin-left: 15%;
+    }
+  </style>
+  

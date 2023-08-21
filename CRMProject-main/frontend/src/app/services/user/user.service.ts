@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://127.0.0.1:8000'; // Replace with your API URL
+  private apiUrl = 'http://127.0.0.1:8000/api'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 
@@ -17,9 +17,9 @@ export class UserService {
   createUser(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/users`, user);
   }
-
+  
   getUser(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/users/${id}`);
+    return this.http.get(`${this.apiUrl}/user/${id}`);
   }
 
   updateUser(id: number, user: any): Observable<any> {
@@ -27,6 +27,7 @@ export class UserService {
   }
 
   deleteUser(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/users/${id}`);
+    const url = `${this.apiUrl}/destroy/${id}`;
+    return this.http.delete(url);
   }
 }

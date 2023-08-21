@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\User\UserController;
@@ -35,6 +37,7 @@ use App\Http\Controllers\Role\RoleUserController;
 |
 */
 
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->admin();
@@ -42,9 +45,20 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index']);
 
-    Route::apiResource('users', UserController::class)->except(['create', 'edit']);
+    Route::get('users', [UserController::class, 'index']);
+    Route::get('user/{user}', [UserController::class, 'show']);
+    Route::post('users', [UserController::class, 'store']);
+    Route::put('users/{user}', [UserController::class, 'update']);
+    Route::delete('/destroy/{user}', [UserController::class, 'destroy']);
     Route::get('users/{user}/projects', [UserProjectController::class, 'index']);
     Route::get('users/{user}/customer', [UserTaskController::class, 'index']);
+    
+    Route::get('/users/{user}', [UserController::class, 'edit'])
+         ->name('users.edit')
+         ->middleware('can:update,user');
+
+    // Update user information
+    
 
     Route::apiResource('clients', ClientController::class)->except(['create', 'edit']);
     Route::get('clients/{client}/documents', [ClientDocumentController::class, 'index']);
@@ -73,12 +87,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('roles', RoleController::class)->except('create', 'edit');
     Route::apiResource('roles.permissions', RolePermissionController::class)->only('index');
     Route::apiResource('roles.users', RoleUserController::class)->only('index');
+
+    Route::post('logout', [LoginController::class, 'logout']);
 });
 
 
 Route::middleware(EnsureFrontendRequestsAreStateful::class)->group(function () {
-
+    
     Route::post('login', [LoginController::class, 'login']);
-    Route::post('logout', [LoginController::class, 'logout']);
+    
 });
 

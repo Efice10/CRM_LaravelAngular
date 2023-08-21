@@ -1,0 +1,45 @@
+<div class="kotak">
+
+    <a routerLink="/create-organization" class="btn btn-success">Create Organization</a>
+    <br><br>    
+    <div class="table-responsive">
+        <table class="table-hover table align-middle">
+        <thead>
+            <tr>
+            <th>Name</th>
+            <th>Website</th>
+            <th>Address</th>
+            <th>Projects count</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Replace this part with actual organization data -->
+            <tr>
+            <td>Organization Name</td>
+            <td><a href="https://example.com">Link</a></td>
+            <td>123 Main St</td>
+            <td>5</td>
+            <td>
+                <div class="d-flex gap-1">
+                <!-- Buttons or links for actions -->
+                <a href="#" class="btn btn-sm btn-primary">Show</a>
+                <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                <form action="#" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                </div>
+            </td>
+            </tr>
+            <!-- End of organization data -->
+        </tbody>
+        </table>
+    </div>
+</div>
+
+  <style>
+    .kotak{
+        margin-left: 15%;
+    }
+  </style>
