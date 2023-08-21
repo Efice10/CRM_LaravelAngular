@@ -24,7 +24,6 @@ import { TableAdminComponent } from './components/admin/table-admin/table-admin.
 import { CreateAdminComponent } from './components/admin/create-admin/create-admin.component';
 import { ShowAdminComponent } from './components/admin/show-admin/show-admin.component';
 import { EditAdminComponent } from './components/admin/edit-admin/edit-admin.component';
-<<<<<<< Updated upstream
 
 //users
 import { TableUserComponent } from './components/users/table-user/table-user.component';
@@ -49,18 +48,6 @@ import { CreateCustomerComponent } from './components/customer/create-customer/c
 import { ListRolesComponent } from './components/roles/list-roles/list-roles.component';
 import { EditRolesComponent } from './components/roles/edit-roles/edit-roles.component';
 
-=======
-import { CreateUsersComponent } from './components/users/create-users/create-users.component';
-import { CreateCompanyComponent } from './components/company/create-company/create-company.component';
-import { EditCompanyComponent } from './components/company/edit-company/edit-company.component';
-import { DeleteCompanyComponent } from './components/company/delete-company/delete-company.component';
-import { CreateProjectComponent } from './components/project/create-project/create-project.component';
-import { EditProjectComponent } from './components/project/edit-project/edit-project.component';
-import { DeleteProjectComponent } from './components/project/delete-project/delete-project.component';
-import { DeleteUsersComponent } from './components/users/delete-users/delete-users.component';
-import { EditUsersComponent } from './components/users/edit-users/edit-users.component';
-import { AlertsComponent } from './components/alerts/alerts.component';
->>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -84,19 +71,6 @@ import { AlertsComponent } from './components/alerts/alerts.component';
     CreateAdminComponent,
     ShowAdminComponent,
     EditAdminComponent,
-<<<<<<< Updated upstream
-=======
-    CreateUsersComponent,
-    CreateCompanyComponent,
-    EditCompanyComponent,
-    DeleteCompanyComponent,
-    CreateProjectComponent,
-    EditProjectComponent,
-    DeleteProjectComponent,
-    DeleteUsersComponent,
-    EditUsersComponent,
-    AlertsComponent,
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
