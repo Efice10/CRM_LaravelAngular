@@ -27,6 +27,9 @@ import { EditAdminComponent } from './components/admin/edit-admin/edit-admin.com
 
 //users
 import { TableUserComponent } from './components/users/table-user/table-user.component';
+import { CreateUserComponent } from './components/users/create-user/create-user.component';
+import { ProfileUserComponent } from './components/users/profile-user/profile-user.component';
+import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 
 //organization
 import { TableOrganizationComponent } from './components/organization/table-organization/table-organization.component';
@@ -71,6 +74,8 @@ import { EditRolesComponent } from './components/roles/edit-roles/edit-roles.com
     CreateAdminComponent,
     ShowAdminComponent,
     EditAdminComponent,
+    EditUserComponent,
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,
