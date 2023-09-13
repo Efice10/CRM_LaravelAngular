@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./profile-user.component.scss']
 })
 export class ProfileUserComponent implements OnInit {
-  user: any; // Renamed from users to user
+  user: any; 
   id:any;
   constructor(private http: HttpClient, private userService: UserService, private route: ActivatedRoute,
     public router :Router) {}

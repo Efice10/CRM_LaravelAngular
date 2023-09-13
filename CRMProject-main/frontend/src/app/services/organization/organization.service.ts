@@ -10,21 +10,28 @@ export class OrganizationService {
 
   constructor(private http: HttpClient) {}
 
-  getOrganizations(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  // Fetch a list of organizations
+  getOrganizations(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
+  // Fetch a single organization by ID
+  getOrganization(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+  // Create a new organization
   createOrganization(organization: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, organization);
+    return this.http.post(this.apiUrl, organization);
   }
 
-  updateOrganization(organization: any): Observable<any> {
-    const url = `${this.apiUrl}/${organization.id}`;
-    return this.http.put<any>(url, organization);
+  // Update an organization by ID
+  updateOrganization(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 
-  deleteOrganization(organization: any): Observable<any> {
-    const url = `${this.apiUrl}/${organization.id}`;
-    return this.http.delete(url);
+  // Delete an organization by ID
+  deleteOrganization(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

@@ -1,43 +1,71 @@
 <div class="kotak">
+  <div class="container mt-4">
+    <h2>Create User</h2>
 
-    <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input type="text" id="title" name="title" class="form-control" value="">
+    <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Errors -->
+      <div *ngIf="errors?.name" class="alert alert-danger mt-3">
+        {{ errors?.name }}
       </div>
-      <div class="mb-3">
-        <label for="status_id" class="form-label">Status</label>
-        <select id="status_id" name="status_id" class="form-select">
-          <option value="">-- Select Status --</option>
-          <!-- Loop through $statuses and create options -->
+      <div *ngIf="errors?.email" class="alert alert-danger mt-3">
+        {{ errors?.email }}
+      </div>
+      <div *ngIf="errors?.phone" class="alert alert-danger mt-3">
+        {{ errors?.phone }}
+      </div>
+      <div *ngIf="errors?.organization" class="alert alert-danger mt-3">
+        {{ errors?.organization }}
+      </div>
+
+      <!-- Signup form -->
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" formControlName="title" required/>
+      </div><br>
+      <div class="form-group">
+        <label for="status_id" class="form-label">Status</label><br>
+        <select id="status_id" name="status_id" formControlName="status_id" >
+          <option value="">Select Status</option>
+          <option *ngFor="let client of clients" [value]="client.id">
+            {{ client.id }}
+          </option>
         </select>
-      </div>
-      <div class="mb-3">
-        <label for="client_id" class="form-label">Client</label>
-        <select id="client_id" name="client_id" class="form-select">
-          <option value="">-- Select Client --</option>
-          <!-- Loop through $organizations and create options -->
+      </div><br>
+      <div class="form-group">
+        <label for="clint_id" class="form-label">Client</label><br>
+        <select id="client_id" name="status_id" formControlName="status_id" >
+          <option value="">Select Status</option>
+          <option *ngFor="let client of clients" [value]="client.id">
+            {{ client.id }}
+          </option>
         </select>
-      </div>
-      <div class="mb-3">
-        <label for="manager_id" class="form-label">Manager</label>
-        <select id="manager_id" name="manager_id" class="form-select">
-          <option value="">-- Select Manager --</option>
-          <!-- Loop through $users and create options -->
+      </div><br>
+      <div class="form-group">
+        <label for="user_id" class="form-label">Manager</label><br>
+        <select id="user_id" name="user_id" formControlName="user_id" >
+          <option value="">Select Status</option>
+          <option *ngFor="let user of users" [value]="user.id">
+            {{ user.id }}
+          </option>
         </select>
-      </div>
-      <div class="mb-3">
-        <label for="deadline" class="form-label">Deadline</label>
-        <input type="date" id="deadline" name="deadline" class="form-control" value="">
-      </div>
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea id="description" name="description" class="form-control"></textarea>
-      </div>
+      </div><br>
+      <div class="form-group">
+        <label>Deadline</label>
+        <input type="date" class="form-control" formControlName="deadline" required/>
+      </div><br>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea type="description" class="form-control" formControlName="description" ></textarea>
+      </div><br>
       
+      <button type="submit" class="btn btn-block btn-primary">
+        Create Project
+      </button>
+    </form>
+  </div>
 
-  <style>
+<style>
     .kotak{
         margin-left: 15%;
     }
-  </style>
-  
+</style>

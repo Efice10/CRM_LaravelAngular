@@ -48,7 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
     Route::get('user/{user}', [UserController::class, 'show']);
     Route::post('users', [UserController::class, 'store']);
-    Route::put('users/{user}', [UserController::class, 'update']);
+    Route::post('users/{user}', [UserController::class, 'update']); 
     Route::delete('/destroy/{user}', [UserController::class, 'destroy']);
     Route::get('users/{user}/projects', [UserProjectController::class, 'index']);
     Route::get('users/{user}/customer', [UserTaskController::class, 'index']);
@@ -59,8 +59,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Update user information
     
-
-    Route::apiResource('clients', ClientController::class)->except(['create', 'edit']);
+    Route::apiResource('clients', ClientController::class);
     Route::get('clients/{client}/documents', [ClientDocumentController::class, 'index']);
     Route::post('clients/{client}/documents', [ClientDocumentController::class, 'store']);
     Route::get('clients/{client}/projects', [ClientProjectController::class, 'index']);

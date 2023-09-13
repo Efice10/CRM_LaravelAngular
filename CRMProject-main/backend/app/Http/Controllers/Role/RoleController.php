@@ -23,7 +23,7 @@ class RoleController extends Controller
 
         $roles = Role::paginate(10);
 
-        return response()->json(['roles' => $roles]);
+        return response()->json($roles);
     }
 
     /**
@@ -74,7 +74,7 @@ class RoleController extends Controller
     {
         $this->authorize('view', $role);
 
-        return response()->json(['role' => $role]);
+        return response()->json($role);
     }
 
     /**

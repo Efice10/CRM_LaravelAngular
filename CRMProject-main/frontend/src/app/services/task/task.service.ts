@@ -6,32 +6,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TaskService {
-  private baseUrl = 'http://127.0.0.1:8000/api'; // Replace with your API base URL
+  private apiUrl = 'http://127.0.0.1:8000/api'; // Replace with your API base URL
 
   constructor(private http: HttpClient) { }
 
-  getTasks(filters: any): Observable<any[]> {
-    const url = `${this.baseUrl}/tasks`;
-    return this.http.get<any[]>(url, { params: filters });
+  getTasks(): Observable<any> {
+    // Implement logic to send a GET request with filters
+    return this.http.get(`${this.apiUrl}/tasks`);
   }
 
-  createTask(task: any): Observable<{ message: string, task: any }> {
-    const url = `${this.baseUrl}/tasks`;
-    return this.http.post<{ message: string, task: any }>(url, task);
+  getTask(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/tasks/${id}`);
   }
 
-  getTask(taskId: number): Observable<any> {
-    const url = `${this.baseUrl}/tasks/${taskId}`;
-    return this.http.get<any>(url);
+  createTask(customer: any): Observable<any> {
+    // Implement logic to send a POST request with task data
+    return this.http.post(`${this.apiUrl}/tasks`, customer);
   }
 
-  updateTask(task: any): Observable<{ message: string, task: any }> {
-    const url = `${this.baseUrl}/tasks/${task.id}`;
-    return this.http.put<{ message: string, task: any }>(url, task);
+  updateTask(id: number, customer: any): Observable<any> {
+    // Implement logic to send a PUT request with task data
+    return this.http.put(`${this.apiUrl}/tasks/${id}`, customer);
   }
 
-  deleteTask(taskId: number): Observable<{ message: string }> {
-    const url = `${this.baseUrl}/tasks/${taskId}`;
-    return this.http.delete<{ message: string }>(url);
+  deleteTask(id: number): Observable<any> {
+    // Implement logic to send a DELETE request
+    return this.http.delete(`${this.apiUrl}/tasks/${id}`);
   }
 }

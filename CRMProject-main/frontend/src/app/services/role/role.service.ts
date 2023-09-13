@@ -6,18 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RoleService {
-  private apiUrl = 'http://127.0.0.1:8000/roles'; // Replace with your API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api/roles'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) {}
 
-  getRoles(): Observable<any[]> {
-    const url = `${this.apiUrl}`;
-    return this.http.get<any[]>(url);
+  getRoles(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
-  createRole(roleData: any): Observable<any> {
+  getRole(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<any>(url);
+  }
+
+  createRole(data: any): Observable<any> {
     const url = `${this.apiUrl}`;
-    return this.http.post<any>(url, roleData, this.getRequestOptions());
+    return this.http.post<any>(url, data, this.getRequestOptions());
   }
 
   updateRole(roleId: number, roleData: any): Observable<any> {

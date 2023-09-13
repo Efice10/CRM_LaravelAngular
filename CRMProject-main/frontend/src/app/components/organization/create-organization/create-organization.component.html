@@ -1,25 +1,45 @@
 <div class="kotak">
     <div class="container mt-4">
-      <h2>Create Company</h2>
-  
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" name="name" class="form-control" value="">
+    <h2>Create Company</h2>
+
+    <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Errors -->
+      <div *ngIf="errors?.name" class="alert alert-danger mt-3">
+        {{ errors?.name }}
       </div>
-      <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input type="text" id="address" name="address" class="form-control" value="">
+      <div *ngIf="errors?.website" class="alert alert-danger mt-3">
+        {{ errors?.website }}
       </div>
-      <div class="mb-3">
-        <label for="website" class="form-label">Website</label>
-        <input type="text" id="website" name="website" class="form-control" value="">
+      <div *ngIf="errors?.address" class="alert alert-danger mt-3">
+        {{ errors?.address }}
       </div>
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea id="description" name="description" class="form-control"></textarea>
+      <div *ngIf="errors?.description" class="alert alert-danger mt-3">
+        {{ errors?.description }}
       </div>
 
-    </div>
+      <!-- Signup form -->
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="name" required/>
+      </div><br>
+      <div class="form-group">
+        <label>Website</label>
+        <input type="text" class="form-control" formControlName="website" />
+      </div><br>
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" class="form-control" formControlName="address" />
+      </div><br>
+      <div class="form-group">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description" name="description" class="form-control" formControlName="description"></textarea>
+      </div><br>
+
+      <button type="submit" class="btn btn-block btn-primary">
+        Create Company
+      </button>
+    </form>
+  </div>
   
   <style>
       .kotak{

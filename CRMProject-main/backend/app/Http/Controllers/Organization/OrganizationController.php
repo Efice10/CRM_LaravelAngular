@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Organization\StoreOrganizationRequest;
 use App\Http\Requests\Organization\UpdateOrganizationRequest;
 use App\Models\Organization;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
@@ -46,7 +47,11 @@ class OrganizationController extends Controller
      */
     public function store(StoreOrganizationRequest $request)
     {
+        dd($request->all());
+        
         $organization = Organization::create($request->validated());
+
+        Log::Info($input);
 
         return response()->json([
             'message' => 'Organization created successfully',

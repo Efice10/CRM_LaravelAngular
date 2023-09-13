@@ -1,8 +1,9 @@
 <div class="kotak">
 
-    <a routerLink="/create-admin" class="btn btn-success">Create User</a>
+  <a routerLink="/create-user" class="btn btn-success">Create User</a>
     <br><br>
-    
+
+  <div class="card">
     <div class="table-responsive">
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     
@@ -56,12 +57,12 @@
         <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
       </table>
     </div>
-    
+    <br>
     <!-- Add pagination and sort headers -->
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
     
   </div>
-  
+  </div>
 
 
     <style>

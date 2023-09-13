@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientService {
-  private apiUrl = 'http://127.0.0.1:8000/clients'; // Replace with your API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api/clients'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) {}
 
-  getClients(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getClients(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
   getClient(id: number): Observable<any> {

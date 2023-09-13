@@ -10,8 +10,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { AppComponent } from './app.component';
 import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
+import { CommonModule } from '@angular/common';
 
-//component
+//all components
 
 //auth
 import { LoginComponent } from './components/login/login.component';
@@ -19,11 +20,11 @@ import { LoginComponent } from './components/login/login.component';
 //dashboard
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-//admin
-import { TableAdminComponent } from './components/admin/table-admin/table-admin.component';
-import { CreateAdminComponent } from './components/admin/create-admin/create-admin.component';
-import { ShowAdminComponent } from './components/admin/show-admin/show-admin.component';
-import { EditAdminComponent } from './components/admin/edit-admin/edit-admin.component';
+//client
+import { TableClientComponent } from './components/client/table-client/table-client.component';
+import { ProfileClientComponent } from './components/client/profile-client/profile-client.component';
+import { CreateClientComponent } from './components/client/create-client/create-client.component';
+import { EditClientComponent } from './components/client/edit-client/edit-client.component';
 
 //users
 import { TableUserComponent } from './components/users/table-user/table-user.component';
@@ -40,6 +41,8 @@ import { ShowOrganizationComponent } from './components/organization/show-organi
 //projects
 import { ListProjectComponent } from './components/project/list-project/list-project.component';
 import { ShowProjectComponent } from './components/project/show-project/show-project.component';
+import { CreateProjectComponent } from './components/project/create-project/create-project.component';
+import { EditProjectComponent } from './components/project/edit-project/edit-project.component';
 
 //customer
 import { TableCustomerComponent } from './components/customer/table-customer/table-customer.component';
@@ -50,6 +53,7 @@ import { CreateCustomerComponent } from './components/customer/create-customer/c
 //roles
 import { ListRolesComponent } from './components/roles/list-roles/list-roles.component';
 import { EditRolesComponent } from './components/roles/edit-roles/edit-roles.component';
+import { ShowRolesComponent } from './components/roles/show-roles/show-roles.component';
 
 
 @NgModule({
@@ -69,13 +73,17 @@ import { EditRolesComponent } from './components/roles/edit-roles/edit-roles.com
     ShowProjectComponent,
     ListRolesComponent,
     EditRolesComponent,
-    TableAdminComponent,
     TableUserComponent,
-    CreateAdminComponent,
-    ShowAdminComponent,
-    EditAdminComponent,
     EditUserComponent,
     CreateUserComponent,
+    CreateClientComponent,
+    EditClientComponent,
+    TableClientComponent,
+    ProfileClientComponent,
+    ProfileUserComponent,
+    CreateProjectComponent,
+    EditProjectComponent,
+    ShowRolesComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +96,7 @@ import { EditRolesComponent } from './components/roles/edit-roles/edit-roles.com
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    CommonModule,
   ],
   providers: [
     {

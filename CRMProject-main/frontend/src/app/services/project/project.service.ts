@@ -6,27 +6,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'http://127.0.0.1:8000/projects'; // Replace with your API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api/'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) {}
 
-  getProjects(filters?: any): Observable<any[]> {
-    const url = `${this.apiUrl}`;
-    return this.http.get<any[]>(url, { params: filters });
+  getProjects(): Observable<any> {
+    return this.http.get(`${this.apiUrl}projects`);
+  }
+  getProject(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}projects/${id}`);
   }
 
   createProject(project: any): Observable<any> {
-    const url = `${this.apiUrl}`;
-    return this.http.post<any>(url, project);
+    return this.http.post<any>(`${this.apiUrl}projects`, project);
   }
 
-  updateProject(project: any): Observable<any> {
-    const url = `${this.apiUrl}/${project.id}`;
-    return this.http.put<any>(url, project);
+  updateProject(id: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}projects/${id}`, data);
   }
 
-  deleteProject(project: any): Observable<any> {
-    const url = `${this.apiUrl}/${project.id}`;
-    return this.http.delete(url);
+  deleteProject(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}projects/${id}`);
   }
 }

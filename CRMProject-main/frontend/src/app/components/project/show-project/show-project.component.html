@@ -1,59 +1,51 @@
 <div class="kotak">
-
     <div class="card">
         <div class="card-body d-flex pt-4">
-          <div class="col-3 pe-2">
+          <div class="col-4 pe-2">
             <div class="mb-3">
-              <h6 class="card-subtitle text-muted mb-1">Project title</h6>
-              <h2 class="card-subtitle"><!-- Replace this with your project's title --></h2>
+              <h6 class="card-subtitle text-muted mb-1">Project Title</h6>
+              <h2 class="card-subtitle">{{ project.title }}</h2>
             </div>
-            <div>
-              <!-- Replace these with your actual edit and delete URLs -->
-              <a href="<!-- Edit URL -->" class="btn btn-warning btn-sm my-1">Edit project</a>
-              <form action="<!-- Delete URL -->" method="POST" class="my-1">
-                <button type="submit" class="btn btn-danger btn-sm">Delete project</button>
-              </form>
+    
+            <div class="d-flex gap-1">
+              <!-- Buttons or links for actions -->
+              <button class="btn btn-warning bg-gradient  btn-sm my-1" (click)="editProject(project.id)">Edit User</button>
+              <button class="btn btn-danger bg-gradient  btn-sm my-1" (click)="deleteProject(project.id)">Delete User</button>
             </div>
+    
           </div>
-          <div class="col-2 px-3">
+          <div class="col-3 px-3">
             <div class="mb-3">
               <h6 class="card-subtitle text-muted mb-1">Client</h6>
-              <h6 class="card-subtitle">
-                <a href="<!-- Client show URL -->"><!-- Replace this with your client show URL --></a>
-              </h6>
-            </div>
-             <div class="align-bottom">
-              <h6 class="card-subtitle text-muted mb-1">Manager</h6>
-              <h6 class="card-subtitle">
-                <a href="<!-- Manager show URL -->"><!-- Replace this with your manager show URL --></a>
-              </h6>
-            </div>
-          </div>
-          <div class="col-2 px-3">
-            <div class="mb-3">
-              <h6 class="card-subtitle text-muted mb-1">Deadline</h6>
-              <h6 class="card-subtitle"><!-- Replace this with your project's deadline --></h6>
-            </div>
-            <div class="mb-3">
-              <h6 class="card-subtitle text-muted mb-1">Created at</h6>
-              <h6 class="card-subtitle"><!-- Replace this with your project's creation date --></h6>
+              <h6 class="card-subtitle">{{ project.address }}</h6>
             </div>
             <div class="align-bottom">
-              <h6 class="card-subtitle text-muted mb-1">Status</h6>
-              <h6 class="card-subtitle"><!-- Replace this with your project's status --></h6>
+              <h6 class="card-subtitle text-muted mb-1">Manager</h6>
+              <h6 class="card-subtitle"><a href="{{ project.manager }}">Link</a></h6>
             </div>
           </div>
           <div class="ps-2">
-            <h6 class="card-subtitle text-muted mb-1">Description</h6>
-            <p class="card-subtitle"><!-- Replace this with your project's description --></p>
+            <div class="mb-3">
+              <h6 class="card-subtitle text-muted mb-1">Deadline</h6>
+              <h6 class="card-subtitle">{{ project.deadline | date:'dd-MM-yyyy' }}</h6>
+            </div>
+            <div class="mb-3">
+              <h6 class="card-subtitle text-muted mb-1">Status</h6>
+              <h6 class="card-subtitle">{{ project.status }}</h6>
+            </div>
+          </div>
+          <div class="ps-3">
+            <div class="mb-3">
+              <h6 class="card-subtitle text-muted mb-1">Description</h6>
+              <h6 class="card-subtitle">{{ project.description }}</h6>
+            </div>
           </div>
         </div>
       </div>
-      
-
-  <style>
-    .kotak{
-        margin-left: 15%;
-    }
-  </style>
-  
+    </div>
+    
+    <style>
+        .kotak{
+            margin-left: 15%;
+        }
+      </style>

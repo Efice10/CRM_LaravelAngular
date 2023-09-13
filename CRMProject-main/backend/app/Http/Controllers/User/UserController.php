@@ -4,11 +4,13 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\StoreClientRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Silber\Bouncer\BouncerFacade as Bouncer;
 
 class UserController extends Controller
@@ -47,7 +49,7 @@ class UserController extends Controller
      * @param  \App\Http\Requests\User\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $userrequest, StoreClientRequest $clientrequest)
 {
     try {
         //Validated
@@ -133,9 +135,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $user)
-{
+    public function update(UpdateUserRequest $request, User $user) {
     $input = $request->validated();
+
+    Log::Info($input);
+
 
     if (isset($input['role_title'])) {
         $role = Bouncer::role()->firstWhere('title', $input['role_title']);

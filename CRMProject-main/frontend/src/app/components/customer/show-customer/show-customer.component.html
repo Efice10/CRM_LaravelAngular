@@ -5,42 +5,36 @@
           <div class="col-3 pe-2">
             <div class="mb-3">
               <h6 class="card-subtitle text-muted mb-1">Task title</h6>
-              <h2 class="card-subtitle"><!-- Replace this with your task's title --></h2>
+              <h2 class="card-subtitle">{{ task.title }}</h2>
             </div>
-            <div>
-              <!-- Replace these with your actual edit and delete URLs -->
-              <a href="<!-- Edit URL -->" class="btn btn-warning btn-sm my-1">Edit task</a>
-              <form action="<!-- Delete URL -->" method="POST" class="my-1">
-                <button type="submit" class="btn btn-danger btn-sm">Delete task</button>
-              </form>
+            <div class="d-flex gap-1">
+              <!-- Buttons or links for actions -->
+              <button class="btn btn-warning bg-gradient  btn-sm my-1" (click)="editCustomer(task.id)">Edit User</button>
+              <button class="btn btn-danger bg-gradient  btn-sm my-1" (click)="deleteCustomer(task.id)">Delete User</button>
             </div>
           </div>
           <div class="col-2 px-3">
             <div class="mb-3">
               <h6 class="card-subtitle text-muted mb-1">Project</h6>
-              <h6 class="card-subtitle">
-                <a href="<!-- Project show URL -->"><!-- Replace this with your project show URL --></a>
-              </h6>
+              <h6 class="card-subtitle">{{ task.project }}</h6>
             </div>
             <div class="align-bottom">
               <h6 class="card-subtitle text-muted mb-1">Assigned</h6>
-              <h6 class="card-subtitle">
-                <a href="<!-- User show URL -->"><!-- Replace this with your user show URL --></a>
-              </h6>
+              <h6 class="card-subtitle"><a href="{{ task.user }}">Link</a></h6>
             </div>
           </div>
           <div class="col-2 px-3">
             <div class="mb-3">
               <h6 class="card-subtitle text-muted mb-1">Deadline</h6>
-              <h6 class="card-subtitle"><!-- Replace this with your task's deadline --></h6>
+              <h6 class="card-subtitle">{{ task.deadline | date:'dd-MM-yyyy' }}</h6>
             </div>
             <div class="mb-3">
               <h6 class="card-subtitle text-muted mb-1">Created at</h6>
-              <h6 class="card-subtitle"><!-- Replace this with your task's creation date --></h6>
+              <h6 class="card-subtitle">{{ task.created_at | date:'dd-MM-yyyy' }}</h6>
             </div>
             <div class="align-bottom">
               <h6 class="card-subtitle text-muted mb-1">Status</h6>
-              <h6 class="card-subtitle"><!-- Replace this with your task's status --></h6>
+              <h6 class="card-subtitle">{{ task.status }}</h6>
             </div>
           </div>
           <div class="ps-2">

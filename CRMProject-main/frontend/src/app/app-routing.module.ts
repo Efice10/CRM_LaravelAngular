@@ -7,11 +7,11 @@ import { LoginComponent } from './components/login/login.component';
 //dashboard
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-//admin
-import { TableAdminComponent } from './components/admin/table-admin/table-admin.component';
-import { CreateAdminComponent } from './components/admin/create-admin/create-admin.component';
-import { ShowAdminComponent } from './components/admin/show-admin/show-admin.component';
-import { EditAdminComponent } from './components/admin/edit-admin/edit-admin.component';
+//client
+import { ProfileClientComponent } from './components/client/profile-client/profile-client.component';
+import { CreateClientComponent } from './components/client/create-client/create-client.component';
+import { EditClientComponent } from './components/client/edit-client/edit-client.component';
+import { TableClientComponent } from './components/client/table-client/table-client.component';
 
 //users
 import { TableUserComponent } from './components/users/table-user/table-user.component';
@@ -40,6 +40,7 @@ import { EditCustomerComponent } from './components/customer/edit-customer/edit-
 //roles
 import { ListRolesComponent } from './components/roles/list-roles/list-roles.component';
 import { EditRolesComponent } from './components/roles/edit-roles/edit-roles.component';
+import { ShowRolesComponent } from './components/roles/show-roles/show-roles.component';
 
 
 const routes: Routes = [
@@ -49,12 +50,11 @@ const routes: Routes = [
   //dashboard
   { path: 'dashboard', component: DashboardComponent },
 
-  //admin
-  { path: 'table-admin', component: TableAdminComponent},
-  { path: 'create-admin', component: CreateAdminComponent },
-  { path: 'show-admin/:id', component: ShowAdminComponent },
-  { path: 'edit-admin/:id', component: EditAdminComponent },
-
+  //client
+  { path: 'table-client', component: TableClientComponent },
+  { path: 'create-client', component: CreateClientComponent },
+  { path: 'profile-client/:id', component: ProfileClientComponent },
+  { path: 'edit-client/:id', component: EditClientComponent },
   //user
   { path: 'table-user', component: TableUserComponent },
   { path: 'create-user', component: CreateUserComponent },
@@ -64,25 +64,25 @@ const routes: Routes = [
   //organization
   { path: 'table-organization', component: TableOrganizationComponent },
   { path: 'create-organization', component: CreateOrganizationComponent },
-  { path: 'show-organization', component: ShowOrganizationComponent },
-  { path: 'edit-organization', component: EditOrganizationComponent },
+  { path: 'show-organization/:id', component: ShowOrganizationComponent },
+  { path: 'edit-organization/:id', component: EditOrganizationComponent },
 
   //project
   { path: 'list-project', component: ListProjectComponent },
   { path: 'create-project', component: CreateProjectComponent },
-  { path: 'edit-project', component: EditProjectComponent },
-  { path: 'show-project', component: ShowProjectComponent },
+  { path: 'edit-project/:id', component: EditProjectComponent },
+  { path: 'show-project/:id', component: ShowProjectComponent },
 
   //customer
   { path: 'table-customer', component: TableCustomerComponent },
   { path: 'create-customer', component: CreateCustomerComponent },
-  { path: 'show-customer', component: ShowCustomerComponent },
-  { path: 'edit-customer', component: EditCustomerComponent },
+  { path: 'show-customer/:id', component: ShowCustomerComponent },
+  { path: 'edit-customer/:id', component: EditCustomerComponent },
 
   //roles
   { path: 'list-roles', component: ListRolesComponent },
-  { path: 'edit-roles', component: EditRolesComponent },
-
+  { path: 'edit-roles/:id', component: EditRolesComponent },
+  { path: 'show-roles/:id', component: ShowRolesComponent },
 ];
 
 @NgModule({
