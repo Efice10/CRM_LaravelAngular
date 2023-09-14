@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreUserRequest;
-use App\Http\Requests\Client\StoreClientRequest;
+use App\Http\Requests\User\StoreClientRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -49,7 +49,7 @@ class UserController extends Controller
      * @param  \App\Http\Requests\User\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $userrequest, StoreClientRequest $clientrequest)
 {
     try {
         //Validated
@@ -76,12 +76,10 @@ class UserController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        $user->assign('user');
-        Log::Info($input);
-
         return response()->json([
             'status' => true,
             'message' => 'User Created Successfully',
+            'token' => $user->createToken("API TOKEN")->plainTextToken
         ], 200);
 
     } catch (\Throwable $th) {

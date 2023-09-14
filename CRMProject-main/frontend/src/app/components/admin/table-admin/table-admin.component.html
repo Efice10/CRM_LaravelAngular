@@ -1,0 +1,71 @@
+<div class="kotak">
+
+    <a routerLink="/create-admin" class="btn btn-success">Create User</a>
+    <br><br>
+    
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    
+        <!-- Define the columns -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let user"> {{ user.id }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let user"> {{ user.name }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+          <td mat-cell *matCellDef="let user"> {{ user.phone }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+          <td mat-cell *matCellDef="let user"> {{ user.address }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="roles">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles </th>
+          <td mat-cell *matCellDef="let user">
+            <span *ngFor="let role of user.roles">{{ role.title }}</span>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let user">
+            <div class="d-flex gap-1">
+              <!-- Buttons or links for actions -->
+              <button class="btn btn-sm btn-primary" (click)="showUser(user.id)">Show</button>
+              <button class="btn btn-sm btn-warning" (click)="editUser(user.id)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">Delete</button>
+            </div>
+          </td>
+        </ng-container>
+    
+        <!-- Set the column definitions in the table -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    
+    <!-- Add pagination and sort headers -->
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+    
+  </div>
+  
+
+
+    <style>
+      .kotak{
+          margin-left: 15%;
+      }
+    </style>
