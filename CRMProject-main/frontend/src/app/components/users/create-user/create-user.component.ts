@@ -37,8 +37,8 @@ export class CreateUserComponent implements OnInit{
       },
       () => {
         this.registerForm.reset();
-        this.router.navigate(['/table-user']);
       }
+      
     );
   }
 }
