@@ -29,7 +29,7 @@ class DummyDataSeeder extends Seeder
             ->create();
 
         $organizations->each(function($organization) {
-            $clients = Client::factory()
+            $users = User::factory()
                 ->for($organization)
                 ->count(3)
                 ->create();
