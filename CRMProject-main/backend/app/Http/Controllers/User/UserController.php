@@ -7,6 +7,7 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\Client\StoreClientRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,7 @@ class UserController extends Controller
 
     $users = User::latest()
         ->with('roles:title')
-        ->paginate(10);
+        ->get();
 
     return response()->json($users);
 }
@@ -40,7 +41,7 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        return response()->json($user);
+        return response()->json($users);
     }
 
     /**
@@ -60,19 +61,20 @@ class UserController extends Controller
             'password' => 'required|string|confirmed|min:6',
         ]);
 
-        if($validateUser->fails()){
+        if ($validateUser->fails()) {
             return response()->json([
                 'status' => false,
-                'message' => 'validation error',
-                'errors' => $validateUser->errors()
-            ], 401);
+                'message' => 'Validation error',
+                'errors' => $validateUser->errors(),
+            ], 422); // Use 422 for validation errors
         }
+        
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->email,
-            'address' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
             'password' => Hash::make($request->password)
         ]);
 
@@ -92,7 +94,12 @@ class UserController extends Controller
     }
 }
 
-
+    public function userInfo(User $user)
+    {
+        return response()->json([
+            'user' => $request->user(), // The authenticated user information
+        ]);
+    }
 
     /**
      * Display the specified resource.
@@ -127,7 +134,7 @@ class UserController extends Controller
             $data['roles'] =  Bouncer::role()->pluck('title', 'title');
         }
 
-        return response()->json($user);
+        return response()->json($users);
     }
 
     /**

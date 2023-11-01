@@ -46,8 +46,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
 
     Route::get('users', [UserController::class, 'index']);
+    Route::get('/user-info', [UserController::class, 'userInfo']);
     Route::get('user/{user}', [UserController::class, 'show']);
-    Route::post('users', [UserController::class, 'store']);
+    Route::post('users', [UserController::class, 'store']); 
     Route::post('users/{user}', [UserController::class, 'update']); 
     Route::delete('/destroy/{user}', [UserController::class, 'destroy']);
     Route::get('users/{user}/projects', [UserProjectController::class, 'index']);
@@ -65,6 +66,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('clients/{client}/projects', [ClientProjectController::class, 'index']);
 
     Route::apiResource('organizations', OrganizationController::class);
+    Route::post('organizations', [OrganizationController::class, 'store']); 
     Route::prefix('organizations/{organization}')->group(function () {
         Route::apiResource('clients', OrganizationClientController::class)->only(['index']);
         Route::apiResource('projects', OrganizationProjectController::class)->only(['index']);

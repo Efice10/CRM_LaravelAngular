@@ -20,7 +20,6 @@ class Client extends Model implements HasMedia
         'email',
         'phone',
     ];
-
     public function organization()
     {
         return $this->belongsTo(Organization::class);

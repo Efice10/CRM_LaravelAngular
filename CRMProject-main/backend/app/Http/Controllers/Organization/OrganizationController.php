@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Organization\StoreOrganizationRequest;
 use App\Http\Requests\Organization\UpdateOrganizationRequest;
 use App\Models\Organization;
+use App\Models\Client;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
@@ -22,7 +24,7 @@ class OrganizationController extends Controller
 
         $organizations = Organization::latest()
             ->withCount('projects')
-            ->paginate(10);
+            ->get();
 
         return response()->json($organizations);
     }
@@ -47,16 +49,45 @@ class OrganizationController extends Controller
      */
     public function store(StoreOrganizationRequest $request)
     {
-        dd($request->all());
-        
-        $organization = Organization::create($request->validated());
+        try {
+            //Validated
+            $validateOrganization = Validator::make($request->all(), 
+            [
+                'name' => 'required|string|max:255|unique:organizations,name',
+                'website' => 'required|string|max:255|url',
+                'address' => 'required|string|max:255',
+                'description' => 'nullable|string',
+            ]);
+    
+            if ($validateOrganization->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validation error',
+                    'errors' => $validateUser->errors(),
+                ], 422); // Use 422 for validation errors
+            }
+            
+    
+            $organization = Organization::create([
+                'name' => $request->name,
+                'website' => $request->website,
+                'address' => $request->address,
+                'description' => $request->description
+            ]);
 
-        Log::Info($input);
-
-        return response()->json([
-            'message' => 'Organization created successfully',
-            'organization' => $organization,
-        ]);
+            Log::Info($input);
+    
+            return response()->json([
+                'status' => true,
+                'message' => 'Organization Created Successfully',
+            ], 200);
+    
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -117,5 +148,18 @@ class OrganizationController extends Controller
         return response()->json([
             'message' => 'Organization deleted successfully',
         ]);
+    }
+
+    public function assignUserToCompany($companyId, $userId)
+    {
+        $company = Company::find($companyId);
+        $user = User::find($userId);
+
+        if ($company && $user) {
+            $company->users()->save($user); // Assuming you have a users() relationship in your Company model
+            return response()->json(['message' => 'User assigned to company successfully'], 200);
+        } else {
+            return response()->json(['error' => 'Company or user not found'], 404);
+        }
     }
 }

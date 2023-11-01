@@ -1,0 +1,77 @@
+<div class="kotak">
+  <div class="container mt-4">
+    <h2>Edit Project</h2>
+
+    <form class="form-signin" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <!-- Errors -->
+      <div *ngIf="errors?.title" class="alert alert-danger mt-3">
+        {{ errors?.title }}
+      </div>
+      <div *ngIf="errors?.status" class="alert alert-danger mt-3">
+        {{ errors?.status }}
+      </div>
+      <div *ngIf="errors?.client" class="alert alert-danger mt-3">
+        {{ errors?.client }}
+      </div>
+      <div *ngIf="errors?.manager" class="alert alert-danger mt-3">
+        {{ errors?.manager }}
+      </div>
+      <div *ngIf="errors?.deadline" class="alert alert-danger mt-3">
+        {{ errors?.deadline }}
+      </div>
+      <div *ngIf="errors?.description" class="alert alert-danger mt-3">
+        {{ errors?.description }}
+      </div>
+
+
+    <div class="form-group">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" formControlName="title" class="form-control" placeholder="{{ project.title }}">
+      </div>
+      <div class="form-group">
+        <label for="manager_id" class="form-label">Status</label>
+        <select id="manager_id" name="manager_id" class="form-select" formControlName="status">
+          <option>-- Select Status --</option>
+          <option *ngFor="let project of project" [value]="project.id">
+            {{ project.client }}
+          </option>
+        </select>
+      </div>  
+      <div class="form-group">
+        <label for="manager_id" class="form-label">Client</label>
+        <select id="manager_id" name="manager_id" class="form-select" formControlName="client">
+          <option>-- Select Client --</option>
+          <option *ngFor="let project of project" [value]="project.id">
+            {{ project.client }}
+          </option>
+        </select>
+      </div>  
+      <div class="form-group">
+        <label for="manager_id" class="form-label">Manager</label>
+        <select id="manager_id" name="manager_id" class="form-select" formControlName="manager">
+          <option>-- Select Manager --</option>
+          <option *ngFor="let project of project" [value]="project.id">
+            {{ project.client }}
+          </option>
+        </select>
+      </div>      
+      <div class="form-group">
+        <label for="deadline" class="form-label">Deadline</label>
+        <input type="date" formControlName="deadline" class="form-control" placeholder="{{ project.deadline | date:'dd-MM-yyyy' }}">
+      </div>
+      <div class="form-group">
+        <label for="description" class="form-label">Description</label>
+        <textarea formControlName="description" class="form-control" placeholder="{{ project.description }}"></textarea>
+      </div><br>
+      <button type="submit" class="btn btn-block btn-primary">
+        Edit Project
+      </button>
+    </form>
+</div>
+
+    <style>
+      .kotak{
+          margin-left: 15%;
+      }
+    </style>
+    
