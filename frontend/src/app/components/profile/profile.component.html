@@ -1,0 +1,28 @@
+<div class="kotak">
+  <br><br>
+  <div class="container">
+    <div class="card inner-main">
+      <div class="card-header">
+        User Profile
+      </div>
+      <div class="card-body">
+        <p class="card-text">Name: <strong>{{ user?.user.name }}</strong></p>
+        <p class="card-text">Email: <strong>{{ user?.user.email }}</strong></p>
+        <p class="card-text">Phone: <strong>+6{{ user?.user.phone }}</strong></p>
+        <p class="card-text">Address: <strong>{{ user?.user.address }}</strong></p> 
+        <p class="card-text" *ngFor="let role of user?.user.roles">Role: <strong>{{ role?.title }}</strong></p>
+        <p class="card-text">Organization: <strong>{{ user.user.organization.name }}</strong></p>
+        <p class="card-text">Organization ID: <strong>{{ user.user.organization.id }}</strong></p>
+        <br>
+      </div> 
+      <button class="btn btn-warning bg-gradient  btn-sm my-1" (click)="editProfile(user?.user.id)">Edit Profile</button>
+    </div>
+  </div>
+</div>
+
+  
+      <style>
+        .kotak{
+            margin-left: 15%;
+        }
+      </style>

@@ -1,0 +1,38 @@
+<div class="kotak">
+<br>
+<div class="card">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    
+        <!-- Define the columns -->    
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let role"> {{ role.title  }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let role">
+            <div class="d-flex gap-1">
+              <!-- Buttons or links for actions -->
+              <button class="btn btn-sm btn-primary" (click)="showRole(role.id)">Show</button>
+              <button class="btn btn-sm btn-warning" (click)="editRole(role.id)">Edit</button>
+            </div>
+          </td>
+        </ng-container>
+    
+        <!-- Set the column definitions in the table -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let role; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+
+
+    <style>
+      .kotak{
+          margin-left: 15%;
+      }
+    </style>

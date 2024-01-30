@@ -1,0 +1,47 @@
+<div class="kotak">
+  <div class="container mt-4">
+    <h2>Edit Roles</h2>
+    
+    <form [formGroup]="roleForm">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <h3>&nbsp;&nbsp;{{role.title}}</h3>
+      </div>
+      <label class="col-sm-2 col form-label">Ability</label>
+        <div class="col-sm-10">
+          <div *ngFor="let ability of abilities" >
+            <label>
+              &nbsp;&nbsp;<input type="checkbox" [value]="ability.name" formControlName="permissions">{{ ability.title }}
+            </label>
+          </div>
+        </div>
+          <br> 
+        <div class="col-sm-10">
+          <button class="btn btn-primary" (click)="onSubmit()">Edit</button>
+        </div>
+    </form>
+  </div>
+
+
+  <style>
+    .kotak{
+        margin-left: 15%;
+    }
+    .form-label{
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .radio-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .radio-column {
+      width: 25%;
+      box-sizing: border-box;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+
+  </style>
+  
